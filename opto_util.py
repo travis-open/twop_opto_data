@@ -368,3 +368,20 @@ def rate_ci_probed_cnx_y(ax, color, midX, probed_hist, cnx_hist, min_probed=5,al
 	plotRateCIy(ax, midX, frac, ci, color,ls)
 
 
+def return_probed_cnx(df, param, cnx_call):
+    probed_calls=['no cnx', 'excitatory', 'inhibitory', 'tbd excitatory', 'tbd inhibitory', 'tbd latency']
+    probed_vals=df[df.cnx.isin(probed_calls)][param]
+    cnx_vals=df[df.cnx==cnx_call][param]
+    return probed_vals, cnx_vals
+
+def write_csv(csv_file, data, description):
+	cols = ['"' + description + '"'] + list(data)
+	line = ','.join(map(str, cols))
+	csv_file.write(line)
+	csv_file.write('\n')
+
+
+probed_calls=['no cnx', 'excitatory', 'inhibitory', 'tbd excitatory', 'tbd inhibitory', 'tbd latency']
+
+
+
